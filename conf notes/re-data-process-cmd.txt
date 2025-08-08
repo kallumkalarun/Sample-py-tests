@@ -1,0 +1,110 @@
+mkdir <ProjectFolder> # if required new folder, this is not Django project name 
+cd <ProjectFolder>
+
+
+
+py -m venv .venv  
+Source .\.venv\Scripts\activate |or|  .\.venv\Scripts\activate
+deactivate
+
+
+#install 'request' packages in virtual env
+pip install requests 
+pip list 
+pip install -U requests 
+pip uninstall requests
+pip install django 
+
+or 
+
+pip install -r /path/to/requirements.txt
+
+python.exe -m pip install --upgrade pip
+
+django-admin startproject myproject
+cd .\myproject\
+
+
+pip freeze > requirements.txt
+
+Select Python interpreter for the project folder as python from venv 
+
+py manage.py runserver 
+or 
+py manage.py runserver localhost:8001
+
+run server in browser 
+
+edit urls.py
+create views.py file 
+
+create directory "templates" parallel to root myproject folder
+create home and about html page along with return hyperlinks 
+
+go to child project name and add templates location 'TEMPLATES[ 'DIRS': []]' portion in settings.py
+
+update settings.py 
+ALLOWED_HOSTS
+INSTALLED_APPS
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+
+STATIC_ROOT = BASE_DIR / 'assets'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+TEMPLATES = [
+.........
+'DIRS': ['templates'],
+............]
+
+
+
+
+Django- App module:
+
+
+py manage.py startapp users # "users" is the name app
+
+open views.py from inside the users app folder
+add return function for request 
+
+
+py manage.py makemigrations
+py manage.py migrate
+
+
+Django admin
+
+create super user 
+py manage.py createsuperuser
+follow the screen questions 
+admin user: arun
+pwd:arunest
+
+py manage.py runserver
+http://127.0.0.1:8000/admin
+
+
+
+py manage.py startapp tasks # "tasks" is the name app
+
+open views.py from inside the tasks app folder
+add return function for request 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

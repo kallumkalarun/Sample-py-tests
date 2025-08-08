@@ -1,0 +1,38 @@
+import requests 
+import json 
+import urllib3 
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
+
+
+# ====== Configuration ====== 
+# 
+organization_logical_name = "arudgscsyajohg" # Your Organization Logical Name 
+tenant_logical_name = "DefaultTenant" # Your Tenant Logical Name 
+bearer_token = "rt_36324E27701546D8A19F77D37598A6783C1820704760AF3B43BDD72E4B10FC69-1" # Replace with your Access Token 
+release_key = "3cded08e-7280-45d1-942d-960bce64d845" 
+
+url = f"https://cloud.uipath.com/{organization_logical_name}/{tenant_logical_name}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs" 
+
+# ====== Headers ====== 
+
+headers = { "Authorization": f"Bearer {bearer_token}", "Content-Type": "application/json" } 
+
+# ====== Payload ====== 
+
+payload = { 
+    "startInfo": 
+    { 
+        "ReleaseKey": release_key, 
+        "Strategy": "Specific", # Required for unattended jobs 
+        "RobotIds": [], # Optional: Can be left empty for any available robot 
+        "NoOfRobots": 1, # Number of robots to run on 
+        "InputArguments": json.dumps({ "in_GreetingMessage": "Hello from Direct Start Job API!" }) 
+    } 
+        } 
+
+# ====== Make API POST Call ====== 
+
+response = requests.post(url, headers=headers, json=payload, verify=False) 
+print(f"Status Code: {response.status_code}") 
+print("Response Text:", response.text)

@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=z3YMz-Gocmw&list=PL0Zuz27SZ-6MQri81d012LwP5jvFZ_scc&index=26
+
+pip install flask
+pip install falsk_restful
+pip install flask_sqlalchemy  #for ORM
+
+pip freeze > requirements.txt
+
+touch .gitignore
+
+touch .env
+
+pip install -r requirements.txt # will install all dependencies from the requirement text file 
+

@@ -1,0 +1,7 @@
+python -m pip install aspose-cells --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 
+
+
+python -m pip install tqdm.auto --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 
+
+
+python -m pip install -U watchdog --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 

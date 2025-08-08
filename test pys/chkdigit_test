@@ -1,0 +1,17 @@
+import barcode
+
+def upc_with_check_digit(upc_without_check_digit:str) ->str:
+    if len(upc_without_check_digit) not in [11, 12]:
+        raise ValueError("UPC must be 11 or 12 digit.")
+    upc = barcode.get('upc', upc_without_check_digit)
+
+    if upc is None:
+        raise ValueError("Invalid UPC format or Barcode tyoe not found")
+    
+    return str(upc)
+
+
+upc_without_check_digit = "88133400970"
+upc_with_check = upc_with_check_digit(upc_without_check_digit)
+print(upc_with_check)
+

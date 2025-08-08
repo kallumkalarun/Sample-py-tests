@@ -1,0 +1,266 @@
+VS Code and Python Setup :
+https://www.youtube.com/watch?v=6i3e-j3wSf0&list=PL0Zuz27SZ-6MQri81d012LwP5jvFZ_scc
+
+Install VS Code.
+From Extension (left side) install Python (Python language support with extension access points for IntelliSense (Pylance))
+
+Ctrl + Shift + P
+Select : Python Interpreter
+ 
+Install Django extension in vs code :
+open vs extension (from vs left tab)  and type "django" then install first one (Django-Beautiful syntax and scoped snippets for perfectionists with deadlines)
+
+Install icons extension in vs code :
+"vscode-icons" search then install 
+
+Windows Virtual env setup issue reference 
+https://www.youtube.com/watch?v=jQktsk1w_js&list=PLOLrQ9Pn6cawJ9CbY-o_kQC4GOWfhCFHq&index=5
+
+cmd 
+
+mkdir <ProjectFolder> # if required new folder, this is not Django project name 
+cd <ProjectFolder>
+
+
+py -m venv .venv  
+Source .\.venv\Scripts\activate |or|  .\.venv\Scripts\activate
+deactivate
+
+#install 'request' packages in global env
+py -m pip show requests  -
+py -m pip install requests 
+py -m pip list 
+py -m pip install -U requests 
+py - m uninstall requests 
+
+if any certificate issue then use below syntax
+python -m pip install requests --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 
+
+
+#install 'request' packages in virtual env
+pip install requests 
+pip list 
+pip install -U requests 
+pip uninstall requests
+
+pip install django 
+
+if any certificate issue then use below syntax
+pip install requests --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 
+
+
+pip freeze > requirements.txt   #create a list all installed packages for a project to the text file 
+
+pip install -r /path/to/requirements.txt	#install all the packages  listed in requiremetns.txt to the .venv environment
+
+pip install -r requirements.txt --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org
+
+
+
+
+Htmp skelton shortcut : !+Tab
+
+
+Django Project:  
+
+Django- web module:
+
+django-admin startproject myproject
+cd .\myproject\
+py manage.py runserver 
+py manage.py runserver localhost:8002
+
+edit urls.py
+create views.py file 
+
+create directory "templates" parallel to root myproject folder
+create home and about html page along with return hyperlinks 
+
+go to child project name and add templates location 'TEMPLATES[ 'DIRS': []]' portion in settings.py
+
+Back to views.py and add/edit return render request to respective pages 
+
+start server and run check in browser 
+
+create directory "static" parallel to root project folder
+create another directory "css" inside "static"
+create another file "style.css" inside css directory
+add css contents in to "style.css" file 
+
+
+Open settings.py and add 
+add import.os #- this is optional add if using join
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+Open html pages and add below code to link style sheets
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+Django- App module:
+
+py manage.py startapp posts # "posts" is the name app
+
+open views.py from inside the posts app folder
+add return function for request 
+
+Open settings.py 
+
+add app name ('posts') inside INSTALLED_APPS = []
+
+create another template folder inside app (posts) directory and another sub directory called 'posts', then create an html file inside
+
+remove automatic detection of html file as Django file - 'Ctrl + ,' -  type 'emmet' - locate 'Emmet: Include Languages' - Add Item 'Item: django-html' and 'value: html'- OK
+for javascript add 'Item: javascript' and 'value: javascriptreact' - Ok
+
+
+complete html file and then create a 'urls.py' parallel to views of posts directory 
+add url of the view function name in to the 'urls.py' file
+open views.py file and append html page name
+
+include this child urls.py file path in main project urls.py file
+
+py manage.py runserver 
+py manage.py runserver localhost:8002
+
+create a layout.html page inside parent template folder and link this layout to all parent and child html pages 
+
+in child posts folder there was another automatic folder created, ie, models.py 
+insert a class inside the models folder which contains all the required fields for a table 
+
+python -m pip install Pillow
+
+py manage.py migrate
+py manage.py makemigrations
+py manage.py migrate
+
+Now migration is applied to the database 
+
+ORM - Object Relational Maping (Relation of Python project and database)
+
+
+py manage.py shell - to get a shell script window and interact with database through the shell script
+from posts.models import Post 
+p=Post()
+p.title = "My first post"
+p.save()
+Post.objects.all()
+
+---
+Django admin
+
+create super user 
+py manage.py createsuperuser
+follow the screen questions 
+admin user: arun
+pwd:arunest
+
+py manage.py runserver 8001
+http://127.0.0.1:8001/admin
+----
+
+same administrative module can be used as Content management system
+
+Open admin.py from posts directory 
+register newly created post here and refresh the browser,  
+
+Add posts through admin module
+edit view,py inside the posts directory 
+edit posts_list.html and add loop to get posts data
+edit urls.py inside the posts directory 
+
+-- missing --
+
+add media url to settings.py  - MEDIA_URL = 'media/'
+add url patterns to the main url.py 
+
+pip install pillow
+then add image field in model 
+if any change in model then do migration 
+py manage.py makemigrations 
+py manage.py migrate     
+
+
+create another app 'users' in my project 
+
+py manage.py startapp users
+open settings.py from main project folder and add "'users'," in INSTALLED_APPS = []
+create urls.py inside users app folder add url path extension and view name.
+open urls.py from main project folder and add include syntax for urls from app folder
+
+create another child templates directory inside users app folder, then create another folder inside templates same name as app folder
+then create register.html page with extension of layout.html
+
+include user creation form in views.py (users folder)
+and redirect if user created successfully 
+
+
+
+
+
+
+
+
+
+
+-- missing --
+
+
+
+---------Settings before deploying to settings.py ----------
+
+if using import.os, remove it from settings.py 
+---
+# SECURITY WARNING: don't run with debug turned on in production!
+Make debus to False
+DEBUG = True
+
+----
+
+ALLOWED_HOSTS = ["localhost","127.0.0.1"]
+or
+ALLOWED_HOSTS = ["ge-asf-process.onrender.com","localhost","127.0.0.1"]  ------- incase getting 404 error 
+
+
+STATIC_ROOT = BASE_DIR / 'assets'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+
+GO TO RTERMINAL : 
+To collect all the static assets 
+
+py manage.py collectstatic
+It will create a folder name "assets" inside the project folder 
+--
+include these in urls
+from django.views.static import serve
+
+urlpatterns = [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+

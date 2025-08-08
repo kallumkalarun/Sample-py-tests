@@ -1,0 +1,30 @@
+API
+----
+
+MENU-SUB MENU - CSS & JS-
+
+https://www.youtube.com/watch?v=XdtZWVK3y_Q
+https://www.youtube.com/watch?v=n4R2E7O-Ngo
+
+https://github.com/bedimcode/responsive-dropdown-menu-2
+https://www.youtube.com/watch?v=rlFjsp4BtRA
+
+https://lightcodeblog.com/how-to-make-drop-down-menu-using-html-and-css/
+
+---
+
+
+git
+https://git-scm.com/
+
+
+--
+deploy with docker
+https://www.youtube.com/watch?v=NL23_cVq6XI
+
+---
+Render deployment
+
+---.
+AWS Deployement
+

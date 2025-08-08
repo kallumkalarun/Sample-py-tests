@@ -1,0 +1,63 @@
+https://www.youtube.com/watch?v=CvUiKWv2-C0
+https://www.youtube.com/watch?v=WwMpEq44El8
+https://git-scm.com/
+install 
+Open git bash and go to project location :
+
+git config --global user.name "Arun"
+git config --global user.email "kallumkalarun@gmail.com"
+git config --global init.defaultBranch main
+
+git help config 
+
+Open VS settings Ctrl + , (File - Preference- Settings)
+search "exclude" and remove **/.git from Files: Exclude list 
+
+get code from git to local folder
+git clone https://github.com/kallumkalarun/dJanFrameworkWeb.git
+
+add project to remote repository 
+git init 
+git add .	or git add index.html
+
+git commit -am "First commit"   or git commit -m "First commit"
+
+git commit -a -m "My first commit"  # git add and commit together
+
+
+git branch -M main
+git remote add origin https://github.com/kallumkalarun/dJanFrameworkWeb.git
+git push -u origin main 
+
+-----
+if received certificate issue msg like below :
+fatal: unable to access 'https://github.com/kallumkalarun/dJanFrameworkWeb.git/': SSL certificate problem: unable to get local issuer certificate
+
+run: 
+git config --global http.sslVerify false
+git push origin main 
+--------
+
+
+git status   of git status -s (for shorter output)
+if any files not required to track include that file in ".gitignore" 
+
+if any changes in the working directory needs to restore 
+git restore index.html
+
+---- cashing credential as optional
+to save git credential 
+git config credential.helper cache  
+git config credential.helper 'cache --timeout=3600'   # set 1 hr time for chashing credentials
+git config --global credential.helper 'cache --timeout=3600'   # set 1 hr time for chashing credentials as global
+----
+
+
+remove connected git from the project:
+rm -rf .git
+
+
+
+
+
+

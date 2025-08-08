@@ -1,0 +1,78 @@
+---------Settings before deploying to settings.py ----------
+
+if using import.os, remove it from settings.py 
+---
+# SECURITY WARNING: don't run with debug turned on in production!
+Make debug to False
+DEBUG = True
+
+----
+
+ALLOWED_HOSTS = ["localhost","127.0.0.1"] 
+or
+ALLOWED_HOSTS = ["ge-asf-process.onrender.com","localhost","127.0.0.1"]  ------- incase getting 404 error 
+
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+
+STATIC_ROOT = BASE_DIR / 'assets'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+
+GO TO RTERMINAL : 
+To collect all the static assets 
+
+py manage.py collectstatic
+It will create a folder name "assets" inside the project folder 
+--
+include these in urls
+from django.views.static import serve
+
+urlpatterns = [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+
+-----------------
+Make sure the 'requirements.txt' and git init should be inside project root directory(parallel to the 'manage.py' file), otherwise while deploying 'Start Command'(uvicorn/gunicorn) can't recognize it.
+
+commit lates version in to GitHub
+
+
+
+
+-----------------
+
+
+WEb Services -- 
+
+Name : ge-asf-process
+Language: Python3
+Branch : main
+Region : Ohio
+
+
+Build Command: pip install -U && pip install -r requirements.txt
+
+Start Command: 
+
+default : gunicorn app:app
+
+uvicorn geASFProcess.asgi:application --host 0.0.0.0
+
+gunicorn geASFProcess.wsgi:application  - if you have wsgi.py file 
+
+(for Django project)
+
+
+
+Environment veriables 
+Key : PYTHON_VERSION / Value: 3.12.5
+
+
+if render through "Bad Request 404" error after deploying, then update renders service domain or IP address into the ALLOWED_HOSTS in projects settings.py file as shown below.
+
+ALLOWED_HOSTS = ["ge-asf-process.onrender.com","localhost","127.0.0.1"]

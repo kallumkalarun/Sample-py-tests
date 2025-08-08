@@ -1,0 +1,46 @@
+import requests
+import json
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+####################### NO RESPONSE IS COLLECTING THIS CASE #################################
+
+# ====== Configuration ======
+full_slug_url = "https://cloud.uipath.com/arunscyajohg/DefaultTenant/orchestrator_/t/02a09cf6-276d-4a77-9fa2-5cfadf3395ba/apiTrigerproject1"
+
+# Personal Access Token (Bearer Token)
+bearer_token = "rt_36324E27701546D8A19F77D37598A6783C1820704760AF3B43BDD72E4B10FC69-1" 
+
+# ====== Headers ======
+headers = {
+    "Authorization": f"Bearer {bearer_token}",
+}
+
+# ====== Make GET Request to Trigger Bot ======
+try:
+    print(f"Attempting to trigger bot via GET slug URL: {full_slug_url}")
+    print(f"With headers: {headers}")
+
+    response = requests.get(full_slug_url, headers=headers, verify=False, timeout=10)
+
+    # ====== Handle the Response ======
+    if response.status_code == 200:
+        print("\nRobot triggered successfully via slug URL (GET request)!")
+        try:
+            response_json = response.json()
+            print("Response JSON:", response_json)
+        except json.JSONDecodeError:
+            print("Response was not JSON or empty.")
+            print("Response Text:", response.text)
+    else:
+        print(f"Failed to trigger robot. Status Code: {response.status_code}")
+        print("Response Text:", response.text) # Print the actual response content for debugging
+
+except requests.exceptions.Timeout:
+    print("The request timed out. Network connection might be slow or blocked.")
+except requests.exceptions.ConnectionError as ce:
+    print(f"A connection error occurred (e.g., DNS failure, refused connection): {ce}")
+except requests.exceptions.RequestException as e:
+    print(f"An unexpected request error occurred: {e}")

@@ -1,0 +1,47 @@
+import re
+from difflib import SequenceMatcher
+from tkinter import messagebox
+
+def matchingWeightage(source_data, user_keyword):
+
+    results = []
+    for source_item in source_data:
+        # normalized_source = re.sub(r'[^\w\s]', '', source_item.strip()).strip().upper()
+        # normalized_keyword = re.sub(r'[^\w\s]', '', user_keyword.strip()).strip().upper()
+        normalized_source = re.sub(r'\s+', ' ', re.sub(r'[^\w\s]', '', source_item.strip()).strip()).upper()
+        normalized_keyword = re.sub(r'\s+', ' ', re.sub(r'[^\w\s]', '', user_keyword.strip()).strip()).upper()
+
+        similarity_ratio = SequenceMatcher(None, normalized_keyword, normalized_source).ratio()
+
+        results.append((source_item, similarity_ratio))
+
+    return results
+
+def getTopMatches(source_data, user_keyword, top_n=1):
+
+    weights = matchingWeightage(source_data, user_keyword)
+    sorted_weights = sorted(weights, key=lambda x: x[1], reverse=True)
+    return sorted_weights[:top_n]
+
+
+source_data = [
+    "AD RETAL : 2/6.00",
+    "BILL TO    :",
+    "MUST RUN WEEK OF",
+    "SCAN FOR AD WEEK IN",
+    "BILL TO.",
+    "MUST RUN WEEK",
+    "SCAN FOR AD WEEK",
+    "BILL TO :",
+]
+
+
+user_keyword = "AD RETAIL"
+
+top_matches = getTopMatches(source_data, user_keyword)
+
+for item, weight in top_matches:
+    # print(f"Source: '{item}', Weight: {weight:.2f}")
+    percentage_weight = weight * 100  
+    print(f"Source: '{item}', Weight: {percentage_weight:.2f}%")
+    # messagebox.showinfo("Process complete", f"Source: '{item}', Weight: {percentage_weight:.2f}%")

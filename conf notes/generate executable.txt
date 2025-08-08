@@ -1,0 +1,30 @@
+
+create 'venv' and install required plugins 
+create project 
+Activate venv (.\.venv\Scripts\activate)
+cd to project directory 
+here initiate creating exe with main filename (geGUI.py). 
+
+
+
+
+pyinstaller --onefile --windowed --collect-all PySide6 geGUI.py
+
+
+--onefile   - generate as one file 
+
+--windowed  - avoid cmd windows file
+
+--collect-all  - collect all file in addition to main.py file 
+
+--PySide6  - specifically include PySide6 plugins 
+
+
+If your application has other dependencies (like images or data files), you might need to include them:
+--add-data "path/to/your/data:."
+
+pyinstaller --onefile --windowed --add-data "path/to/your/data:." --collect-all PySide6 geGUI.py
+
+
+
+The final single exe file available in 'dist' folder. 

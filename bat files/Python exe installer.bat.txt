@@ -1,0 +1,101 @@
+@echo off
+
+REM Get the current directory
+cd /d "%~dp0"
+
+REM Generate a unique filename with date and time (YYYYMMDD_HHMMSS)
+set datetime=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+set datetime=%datetime: =0%
+set log_file=install_log_%datetime%.txt
+
+REM Welcome message
+echo ==============================================
+echo Welcome to the Python Installer
+echo ==============================================
+echo.
+
+
+REM Detect if the system is 64-bit or 32-bit 
+set "arch=32-bit" 
+if defined ProgramFiles(x86) set "arch=64-bit" 
+
+echo Detected system architecture: %arch% 
+
+
+REM Set the Python installer URL based on system architecture 
+if "%arch%"=="64-bit" ( 
+REM Install Python 64 bit
+echo Installing Python 64 bit... > %log_file%
+echo Please wait while Python is being installed... >> %log_file%
+start /wait python-3.12.5-amd64.exe /quiet InstallAllUsers=0 PrependPath=1 >nul 2>&1
+) else ( 
+
+REM Install Python 32 bit
+echo Installing Python 32 bit... > %log_file%
+echo Please wait while Python is being installed... >> %log_file%
+start /wait python-3.12.5.exe /quiet InstallAllUsers=0 PrependPath=1 >nul 2>&1
+
+) 
+
+REM Check if the installation was successful 
+python --version >nul 2>&1 
+if %errorlevel% neq 0 (
+    echo Python installation failed. Please check %log_file% for details.
+    pause
+    exit /b 1
+) else (
+    echo Python installed successfully. >> %log_file%
+    echo Python installed successfully.
+)
+
+REM Install pip if not already installed
+REM python -m ensurepip >> %log_file% 2>&1
+python -m pip install ensurepip --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org  >> %log_file% 2>&1
+
+REM Verify pip installation
+pip --version >> %log_file% 2>&1
+if %errorlevel% neq 0 (
+    echo pip installation failed. Please check %log_file% for details.
+    pause
+    exit /b 1
+) else (
+    echo pip installed successfully. >> %log_file%
+    echo pip installed successfully.
+)
+
+REM Install openpyxl package
+echo Installing openpyxl package... >> %log_file%
+REM pip install openpyxl >> %log_file% 2>&1
+python -m pip install openpyxl --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org  >> %log_file% 2>&1
+if %errorlevel% neq 0 (
+    echo openpyxl installation failed. Please check %log_file% for details.
+    pause
+    exit /b 1
+) else (
+    echo openpyxl installed successfully. >> %log_file%
+    echo openpyxl installed successfully.
+)
+
+
+REM Install watchdog package
+echo Installing watchdog package... >> %log_file%
+python -m pip install -U watchdog --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org >> %log_file% 2>&1
+if %errorlevel% neq 0 (
+    echo watchdog installation failed. Please check %log_file% for details.
+    pause
+    exit /b 1
+) else (
+    echo watchdog installed successfully. >> %log_file%
+    echo watchdog installed successfully.
+)
+
+
+
+echo.
+echo ==============================================
+echo Installation Completed Successfully!
+echo For detailed log, please refer to %log_file%
+echo ==============================================
+pause
+
+
