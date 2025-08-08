@@ -9,8 +9,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # 
 organization_logical_name = "arudgscsyajohg" # Your Organization Logical Name 
 tenant_logical_name = "DefaultTenant" # Your Tenant Logical Name 
-bearer_token = "rt_36324E27701546D8A19F77D37598A6783C1820704760AF3B43BDD72E4B10FC69-1" # Replace with your Access Token 
-release_key = "3cded08e-7280-45d1-942d-960bce64d845" 
+bearer_token = "rt_Replace_with_your_Access_Token" 
+release_key = "3246785698670960876080" 
 
 url = f"https://cloud.uipath.com/{organization_logical_name}/{tenant_logical_name}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs" 
 
