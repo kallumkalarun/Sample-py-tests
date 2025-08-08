@@ -11,11 +11,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # The full slug URL for your UiPath API Trigger.
 # This must EXACTLY match the URL for your API Trigger with the 'apiTrigerproject1' slug and GET verb.
 
-full_slug_url = "https://cloud.uipath.com/arunscyajohg/DefaultTenant/orchestrator_/t/02a09cf6-276d-4a77-9fa2-5cfadf3395ba/apiTrigerproject2" #
+full_slug_url = "https://cloud.uipath.com/updaterealname/DefaultTenant/orchestrator_/t/02a0962346r8756986395795ba/apiTrigerproject2" #
 
 # Replace with your actual Personal Access Token (Bearer Token).
 # Ensure this token has 'Orchestrator API Access' -> 'Triggers.Read' permission.
-bearer_token = "rt_36324E27701546D8A19F77D37598A6783C1820704760AF3B43BDD72E4B10FC69-1"
+bearer_token = "updatebearertoken"
 
 # ====== Headers ======
 headers = {
