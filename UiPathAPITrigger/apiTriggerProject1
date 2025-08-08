@@ -8,10 +8,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ####################### NO RESPONSE IS COLLECTING THIS CASE #################################
 
 # ====== Configuration ======
-full_slug_url = "https://cloud.uipath.com/erytery4634636/DefaultTenant/orchestrator_/t/0568858568568ba/apiTrigerproject1"
+full_slug_url = "https://cloud.uipath.com/updaterealname/DefaultTenant/orchestrator_/t/0568858568568ba/apiTrigerproject1"
 
 # Personal Access Token (Bearer Token)
-bearer_token = "rt_21354236354754856959579" 
+bearer_token = "update_bearer_token" 
 
 # ====== Headers ======
 headers = {
