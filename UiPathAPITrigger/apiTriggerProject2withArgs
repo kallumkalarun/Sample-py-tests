@@ -7,8 +7,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ====== Configuration ====== 
 # 
-organization_logical_name = "arudgscsyajohg" # Your Organization Logical Name 
-tenant_logical_name = "DefaultTenant" # Your Tenant Logical Name 
+organization_logical_name = "updaterealname" 
+tenant_logical_name = "DefaultTenant" 
 bearer_token = "rt_Replace_with_your_Access_Token" 
 release_key = "3246785698670960876080" 
 
